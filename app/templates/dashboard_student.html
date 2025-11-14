@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+
+  <!-- Summary Cards -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-primary text-white">
+        <h6>Your Class</h6>
+        <h3>10-A</h3> <!-- dynamic later -->
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-success text-white">
+        <h6>Total Subjects</h6>
+        <h3>6</h3> <!-- dynamic later -->
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-warning text-dark">
+        <h6>Attendance</h6>
+        <h3>92%</h3> <!-- dynamic later -->
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row g-4">
+
+    <!-- Profile -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <h6 class="fw-semibold">Your Profile</h6>
+        <p><strong>Name:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Role:</strong> {{ user.role }}</p>
+        <p><strong>Class:</strong> {{ user.class_name }}</p>
+        <p><strong>Roll No:</strong> {{ user.roll_no }}</p>
+
+      </div>
+    </div>
+
+    <!-- Marks -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <h6 class="fw-semibold">Your Marks</h6>
+        <p>Coming soon...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Attendance -->
+  <div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
+    <h6 class="fw-semibold">Your Attendance</h6>
+    <p>Coming soon...</p>
+  </div>
+
+</div>
+
+{% endblock %}

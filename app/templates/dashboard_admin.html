@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+
+  <!-- Summary Cards -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-3">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-primary text-white">
+        <h6>Total Students</h6>
+        <h3>{{ total_students }}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-success text-white">
+        <h6>Total Teachers</h6>
+        <h3>{{ total_teachers }}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-warning text-dark">
+        <h6>Total Classes</h6>
+        <h3>{{ total_classes }}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-info text-white">
+        <h6>Attendance Today</h6>
+        <h3>{{ attendance_today }}</h3>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Chart & Notifications -->
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <h6 class="fw-semibold mb-3">Attendance Overview</h6>
+        <canvas id="attendanceChart"></canvas>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <h6 class="fw-semibold mb-3">Recent Notifications</h6>
+        <ul class="list-group list-group-flush">
+          {% if notifications %}
+            {% for n in notifications %}
+                <li class="list-group-item">
+                    {{ n.message }} <br>
+                    <small class="text-muted">{{ n.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                </li>
+            {% endfor %}
+          {% else %}
+            <li class="list-group-item text-muted">No notifications yet.</li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Add Admin -->
+<div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
+  <h6 class="fw-semibold mb-3">Add New Admin</h6>
+  <form action="/add_admin" method="post">
+    <div class="row">
+      <div class="col-md-4 mb-2">
+        <input type="text" name="username" class="form-control" placeholder="Username" required>
+      </div>
+      <div class="col-md-4 mb-2">
+        <input type="email" name="email" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="col-md-4 mb-2">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create Admin</button>
+  </form>
+</div>
+
+<div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
+  <h6 class="fw-semibold mb-3">Add Student</h6>
+  <form action="/admin/add-student" method="post">
+    <div class="row">
+      <div class="col-md-4 mb-2"><input name="username" class="form-control" placeholder="Full Name" required></div>
+      <div class="col-md-4 mb-2"><input name="email" class="form-control" placeholder="Email" required></div>
+      <div class="col-md-4 mb-2"><input name="password" class="form-control" placeholder="Password" required></div>
+
+      <div class="col-md-3 mb-2"><input name="class_name" class="form-control" placeholder="Class Name" required></div>
+      <div class="col-md-3 mb-2"><input name="roll_no" class="form-control" placeholder="Roll Number" required></div>
+      <div class="col-md-3 mb-2"><input type="date" name="dob" class="form-control" required></div>
+      <div class="col-md-3 mb-2"><input name="address" class="form-control" placeholder="Address" required></div>
+    </div>
+
+    <button class="btn btn-primary mt-2">Add Student</button>
+  </form>
+</div>
+
+<div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
+  <h6 class="fw-semibold mb-3">Add New Teacher</h6>
+
+  <form action="/admin/add-teacher" method="post">
+    <div class="row">
+      <div class="col-md-3 mb-2">
+        <input type="text" name="username" class="form-control" placeholder="Name" required>
+      </div>
+
+      <div class="col-md-3 mb-2">
+        <input type="email" name="email" class="form-control" placeholder="Email" required>
+      </div>
+
+      <div class="col-md-3 mb-2">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+
+      <div class="col-md-3 mb-2">
+        <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Add Teacher</button>
+  </form>
+</div>
+
+
+<!-- Chart JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('attendanceChart');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      datasets: [{
+        label: 'Attendance (%)',
+        data: [95, 98, 93, 97, 96],
+        borderColor: '#0d6efd',
+        backgroundColor: 'rgba(13,110,253,0.2)',
+        tension: 0.4,
+        fill: true,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: { y: { beginAtZero: true, max: 100 } },
+      plugins: { legend: { display: false } }
+    }
+  });
+</script>
+
+{% endblock %}

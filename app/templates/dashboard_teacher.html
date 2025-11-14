@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+
+  <!-- Summary Cards -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-primary text-white">
+        <h6>Your Classes</h6>
+        <h3>3</h3> <!-- dynamic later -->
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-success text-white">
+        <h6>Students Assigned</h6>
+        <h3>85</h3> <!-- dynamic later -->
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3 bg-warning text-dark">
+        <h6>Attendance Today</h6>
+        <h3>94%</h3> <!-- dynamic later -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Profile & Forms -->
+  <div class="row g-4">
+
+    <!-- Teacher Profile -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <h6 class="fw-semibold">Your Profile</h6>
+        <p><strong>Name:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Role:</strong> {{ user.role }}</p>
+        <p><strong>Subject:</strong> {{ user.subject }}</p>
+      </div>
+    </div>
+
+    <!-- Mark Attendance -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <h6 class="fw-semibold">Mark Attendance</h6>
+
+        <form method="post" action="/teacher/attendance">
+          <input type="text" class="form-control mb-2" name="class_name" placeholder="Class Name" required>
+          <input type="date" class="form-control mb-2" name="date" required>
+
+          <button class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Upload Marks -->
+  <div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
+    <h6 class="fw-semibold">Upload Marks</h6>
+
+    <form method="post" action="/teacher/marks">
+      <div class="row">
+        <div class="col-md-4">
+          <input class="form-control mb-2" name="student_id" placeholder="Student ID" required>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control mb-2" name="subject" placeholder="Subject" required>
+        </div>
+        <div class="col-md-4">
+          <input type="number" class="form-control mb-2" name="marks" placeholder="Marks" required>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-2">Upload</button>
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}
