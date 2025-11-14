@@ -165,11 +165,19 @@ PythonAnywhere
 📸 Screenshots
 🔵 Login Page
 
+<img width="1920" height="1020" alt="Screenshot 2025-11-14 211329" src="https://github.com/user-attachments/assets/f55f6f29-57d6-4bb2-80a3-02ea96fc90e4" />
+<img width="1920" height="1020" alt="Screenshot 2025-11-14 211311" src="https://github.com/user-attachments/assets/8d54f41b-3192-4a90-ac05-33ad58474915" />
+
 🟣 Admin Dashboard
+
+<img width="1920" height="1020" alt="Screenshot 2025-11-14 211401" src="https://github.com/user-attachments/assets/3aac608b-3217-425d-b399-b2a39ac97d1e" />
 
 🟠 Teacher Dashboard
 
+<img width="1920" height="1020" alt="Screenshot 2025-11-14 211507" src="https://github.com/user-attachments/assets/a96cbf85-7198-401d-b26b-9c6f5ce5c312" />
+
 🟢 Student Dashboard
+<img width="1920" height="1020" alt="Screenshot 2025-11-14 211542" src="https://github.com/user-attachments/assets/d2ba44d0-c57b-4f5f-b5b3-cea3ad4d33ce" />
 
 📌 Future Enhancements (Planned)
 
